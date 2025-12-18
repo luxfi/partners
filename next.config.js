@@ -3,10 +3,6 @@ const svgrWebpackConfig = require('./svgr.next.config')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  typescript: { ignoreBuildErrors: true },
-  eslint: { ignoreDuringBuilds: true },
-  images: { unoptimized: true },
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   reactStrictMode: true,
   images: {
@@ -37,7 +33,11 @@ const nextConfig = {
     '@luxfi/menu-icons'
   ],
   productionBrowserSourceMaps: true,
-  webpack: svgrWebpackConfig // if we need others, set up a chain of calls.
+  webpack: svgrWebpackConfig, // if we need others, set up a chain of calls.
+  experimental: {
+    // Fix for ESM modules issue
+    esmExternals: false,
+  }
 }
 
 module.exports = withMDX(nextConfig)
