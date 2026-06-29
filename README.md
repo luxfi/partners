@@ -1,3 +1,5 @@
+<p align="center"><img src=".github/hero.svg" alt="partners" width="880"></p>
+
 # partners
 Lux Partners static site.
 
