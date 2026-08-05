@@ -90,7 +90,7 @@ export default {
       url: "https://www.linkedin.com/in/joseph-reiben-4b380a7/",
       image: {
         blockType: "image",
-        src: "/assets/images/joe-reiben.jpg",
+        src: "/assets/images/transparent.gif",
         alt: "Joe Reiben",
         dim: { w: 100, h: 100 },
       } as C.ImageBlock,
