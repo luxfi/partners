@@ -153,7 +153,7 @@ export default {
       url: "https://www.linkedin.com/in/grant-cairney-iom/",
       image: {
         blockType: 'image',
-        src: '/assets/images/Chris Connor.jpg',
+        src: '/assets/images/transparent.gif',
         alt: 'Grant Cairney',
         dim: { w: 100, h: 100 },
       } as C.ImageBlock,
