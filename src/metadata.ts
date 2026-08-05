@@ -8,7 +8,7 @@ export default {
   },
   description: "Pioneer the future of finance with Lux Partners",
   applicationName: "Lux Partners",
-  authors: { name: "Lux Partners Limited" },
+  authors: { name: "Lux Industries Inc" },
   keywords:
     "Lux, Lux Partners, Lux DeFi, Lux Network, DeFi, Web3, Privacy, Quantum Security, Blockchain, Bridge, Multi-Chain, Ethereum, EVM, Solana, Bitcoin, Cross-Chain, Interoperability, Cryptocurrency, Blockchain Technology",
   icons: [

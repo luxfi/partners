@@ -1,9 +1,11 @@
 import React, { type PropsWithChildren } from 'react'
-import type { Viewport, Metadata } from 'next'
+import type { Viewport } from 'next'
 
-export const metadata: Metadata = {
-  title: 'partners - LUX',
-}
+import _metadata from '../metadata'
+
+import './globals.css'
+
+export const metadata = { ..._metadata }
 
 export const viewport: Viewport = {
   themeColor: [
@@ -14,8 +16,16 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang='en' className='dark'>
-      <body className='bg-black text-white flex flex-col min-h-full'>
+    <html
+      lang='en'
+      suppressHydrationWarning
+      className='hanzo-ui-dark-theme'
+      style={{ backgroundColor: '#000' }}
+    >
+      <body
+        suppressHydrationWarning
+        className='bg-background text-foreground font-sans flex flex-col min-h-full'
+      >
         {children}
       </body>
     </html>

@@ -1,0 +1,20 @@
+/*
+  Lux global styles, colors and @font-face rules.
+
+  We use the "non-next" variant because this app does not mount @luxfi/ui's RootLayout
+  (that pulls in Firebase auth + commerce providers, which a static marketing export
+  neither needs nor can initialise). The non-next variant loads the font files from
+  /fonts/* -- see public/fonts, per @luxfi/ui/style/fonts/COPY_TO_PUBLIC_FOR_NON_NEXT.txt.
+*/
+@import "@luxfi/ui/style/lux-global-non-next.css";
+
+/*
+  @luxfi/ui's tailwind preset resolves font-sans/font-nav/font-heading through these CSS
+  variables, which are normally defined by next/font in RootLayout. Point them at the
+  @font-face families declared in lux-fonts.css.
+*/
+:root {
+  --font-inter: "inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-druk-wide: "DrukWide", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-druk-text-wide: "DrukWide", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
