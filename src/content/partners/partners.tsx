@@ -17,7 +17,7 @@ export default {
     {
       blockType: "partner-card",
       name: "Zach Kelling",
-      title: "Co-CEO",
+      title: "CEO & Chairman of the Board",
       description:
         "A visionary leader in adtech and fintech, Zach leverages quantum encryption for positive environmental and social outcomes. He is prolific as both an engineer and entrepreneur, with over 15 years in high growth startups. He founded Hanzo, a Techstars funded AI marketing platform that launched some of the most successful crowdsales in history, and co-Founded the first SEC approved digital securities platform with Arca, as well as DAOs BrightMoments and DEVxDAO. As CEO of LUX, Zach has pioneered one of the first quantum financial systems. He also actively contributes to influential DAOs and drives societal change, serving on the executive board of the CROP Organization.",
       url: "https://linkedin.com/in/zeekay",
