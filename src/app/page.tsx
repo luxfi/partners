@@ -10,7 +10,7 @@ import PartnersLogosBlockComponent from "@/blocks/components/partners/partners-l
 import Press from "@/blocks/components/press"
 import Products from "@/blocks/components/products"
 import SiteFooter from "@/blocks/components/site-footer"
-import advisors from "@/content/partners/advisors"
+// import advisors from "@/content/partners/advisors" // hidden with the section below
 import logos from "@/content/partners/logos"
 import partners from "@/content/partners/partners"
 
@@ -21,7 +21,10 @@ const LandingPage = () => {
         <Intro />
         <Products />
         <PartnersBlockComponent block={partners} />
-        <PartnersBlockComponent block={advisors} />
+        {/* Advisors and Investors — hidden, not deleted. The roster lives in
+            @/content/partners/advisors; restore the section by uncommenting
+            this line and its import. */}
+        {/* <PartnersBlockComponent block={advisors} /> */}
         <PartnersLogosBlockComponent block={logos} />
         <Press />
         <Outro />
