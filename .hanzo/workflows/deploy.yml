@@ -1,0 +1,70 @@
+name: deploy
+
+# lux.partners is a SITE: a static export with no compute, published to the Hanzo
+# Sites plane like every other static surface in the fleet.
+#
+#   build -> out
+#     -> sitedeploy
+#
+# It used to ship through a Cloudflare Worker, and before that GitHub Pages. Both
+# are somebody else's platform, and both went dark the same way: the publish was
+# conditional on a credential nobody had supplied, so every push built, warned,
+# and exited GREEN while the domain served whatever was last on it. The team
+# removed from this repo stayed live for exactly that reason.
+#
+# The publish mechanics are NOT here. They are bin/sitedeploy in hanzoai/ci,
+# reached through its action, and every static surface calls that one script —
+# ensure-project, enqueue, presigned per-file upload, complete. It SELF-PROVISIONS,
+# so committing this file is enough to stand the site up.
+#
+# The deploy key is in KMS and the action reads it there, so this file names no
+# token — only the KMS client identity that opens it.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  site:
+    # NOT ubuntu-latest. This file lives in .hanzo/workflows, which GitHub never
+    # reads — git.hanzo.ai is the only thing that can run it, and its fleet
+    # advertises hanzo-build-linux-amd64.
+    runs-on: hanzo-build-linux-amd64
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: build the static export
+        run: |
+          set -euo pipefail
+          corepack enable
+          pnpm install --no-frozen-lockfile
+          pnpm build
+          # The export is the deliverable. An empty one is a green build that
+          # publishes nothing, which is the failure this lane exists to end.
+          test -s out/index.html || { echo "::error::build produced no out/index.html"; exit 1; }
+          echo "exported $(find out -type f | wc -l) files"
+          # This site shows no staff. Assert it on the BYTES THAT SHIP, because
+          # the content files can come back in a merge and nobody would look.
+          if grep -rqiE "Advisors and Investors|Chief Executive Officer" out/; then
+            echo "::error::a leadership or investor section is present in the export"
+            exit 1
+          fi
+
+      - name: Publish to the Sites plane
+        uses: hanzoai/ci/.github/actions/sitedeploy@v1
+        with:
+          slug: lux-partners
+          dir: out
+        env:
+          KMS_CLIENT_ID: ${{ secrets.KMS_CLIENT_ID }}
+          KMS_CLIENT_SECRET: ${{ secrets.KMS_CLIENT_SECRET }}
