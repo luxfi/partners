@@ -4,7 +4,7 @@ name: deploy
 # Sites plane like every other static surface in the fleet.
 #
 #   build -> out
-#     -> sitedeploy
+#     -> site
 #
 # It used to ship through a Cloudflare Worker, and before that GitHub Pages. Both
 # are somebody else's platform, and both went dark the same way: the publish was
@@ -12,7 +12,7 @@ name: deploy
 # and exited GREEN while the domain served whatever was last on it. The team
 # removed from this repo stayed live for exactly that reason.
 #
-# The publish mechanics are NOT here. They are bin/sitedeploy in hanzoai/ci,
+# The publish mechanics are NOT here. They are bin/site in hanzoai/ci,
 # reached through its action, and every static surface calls that one script —
 # ensure-project, enqueue, presigned per-file upload, complete. It SELF-PROVISIONS,
 # so committing this file is enough to stand the site up.
@@ -61,7 +61,7 @@ jobs:
           fi
 
       - name: Publish to the Sites plane
-        uses: hanzoai/ci/.github/actions/sitedeploy@v1
+        uses: hanzoai/ci/.github/actions/site@v1
         with:
           slug: lux-partners
           dir: out
