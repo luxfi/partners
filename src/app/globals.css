@@ -4,9 +4,9 @@
   We use the "non-next" variant because this app does not mount @luxfi/ui's RootLayout
   (that pulls in Firebase auth + commerce providers, which a static marketing export
   neither needs nor can initialise). The non-next variant loads the font files from
-  /fonts/* -- see public/fonts, per @luxfi/ui/style/fonts/COPY_TO_PUBLIC_FOR_NON_NEXT.txt.
 */
-@import "@luxfi/ui/style/lux-global-non-next.css";
+@import "@hanzo/ui/styles.css";
+@import "@luxfi/ui/tokens.css";
 
 /*
   @luxfi/ui's tailwind preset resolves font-sans/font-nav/font-heading through these CSS
@@ -17,4 +17,13 @@
   --font-inter: "inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-druk-wide: "DrukWide", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-druk-text-wide: "DrukWide", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
 }

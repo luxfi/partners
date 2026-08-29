@@ -1,6 +1,8 @@
 import React, { type PropsWithChildren } from 'react'
 import type { Viewport } from 'next'
 
+import { AppProvider } from '@luxfi/ui/provider'
+
 import _metadata from '../metadata'
 
 import './globals.css'
@@ -24,9 +26,8 @@ export default function RootLayout({ children }: PropsWithChildren) {
     >
       <body
         suppressHydrationWarning
-        className='bg-background text-foreground font-sans flex flex-col min-h-full'
       >
-        {children}
+        <AppProvider>{children}</AppProvider>
       </body>
     </html>
   )

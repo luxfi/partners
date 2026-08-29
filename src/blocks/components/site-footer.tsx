@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import Footer from '@luxfi/ui/components/footer'
+import { Footer } from '@luxfi/ui'
 
 import siteDef from '@/site-def'
 

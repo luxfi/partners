@@ -1,6 +1,6 @@
 import React from "react"
 
-import Main from "@luxfi/ui/components/main"
+import { Main } from '@luxfi/ui'
 
 //import Ecosystem from "@/blocks/components/ecosystem"
 import Intro from "@/blocks/components/intro"
